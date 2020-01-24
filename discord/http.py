@@ -428,7 +428,10 @@ class HTTPClient:
             params['around'] = around
 
         return self.request(Route('GET', '/channels/{channel_id}/messages', channel_id=channel_id), params=params)
-
+    
+    def search_from(self, channel_id, content):
+        return self.request(Route('GET', '/channels/{channel_id}/messages/search?content={content}', channel_id=channel_id, content=content) 
+    
     def publish_message(self, channel_id, message_id):
         return self.request(Route('POST', '/channels/{channel_id}/messages/{message_id}/crosspost',
                                   channel_id=channel_id, message_id=message_id))
